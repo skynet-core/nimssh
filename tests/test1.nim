@@ -7,4 +7,16 @@
 
 import unittest
 import nimssh
+import asyncdispatch, system
 
+suite "SSH client tests":
+    setup:
+        let 
+            host = "localhost"
+            user = "skynet"
+
+    test "test client connection":
+        let client = nimssh.newClient(host)
+        var future = client.connect()
+        future.waitFor()
+        
